@@ -61,7 +61,7 @@ navigator.geolocation.getCurrentPosition(async function (position) {
             weatherImgs.src = "img/thunderstorm.png";
         }
 
-        // Fetch and display 5-day forecast data
+        // Fetches and displays 5-day forecast data
         const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${data.city.name}&appid=${apiKey}&units=metric`;
 
         fetch(forecastUrl)
