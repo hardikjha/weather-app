@@ -27,7 +27,8 @@ let year = new Date().getFullYear();
 let FullDate = document.querySelector(".date");
 FullDate.innerHTML = `${months_name[months]} ${date}, ${year}`;
 
-// Weather info
+// Weather info of the city
+
 async function city(cityName) {
   let url = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityName}&appid=${apiKey}`

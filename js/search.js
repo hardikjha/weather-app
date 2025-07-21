@@ -59,6 +59,7 @@ async function search(city, state, country){
     }
 }
 
+// Logs message to console to indicate that the API request was successful
 
 searchinput.addEventListener('keydown', function(event) {
     if (event.keyCode === 13 || event.which === 13) {
