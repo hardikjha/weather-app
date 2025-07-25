@@ -5,7 +5,7 @@ navigator.geolocation.getCurrentPosition(async function (position) {
     try {
         var lat = position.coords.latitude;
         var lon = position.coords.longitude;
-        //longitude and  latitude are used to get city name
+        //longitude and  latitude are used to fetch city name
         var map = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${apiKey}`)
         var userdata = await map.json();
         let loc = userdata[0].name;
