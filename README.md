@@ -32,3 +32,5 @@
 
 **Hardik Kumar**  
 [OpenWeatherMap](https://openweathermap.org/)
+
+[Link to GitHub repository](https://github.com/hardikjha/weather-app)
