@@ -26,7 +26,7 @@
 
       <h1 class="text-4xl font-bold text-center">Earth-Now</h1>
 
-      <!-- Search + Location Buttons -->
+      <!-- Search & Location Buttons -->
       <div class="flex flex-wrap gap-2 sm:flex-col md:flex-row md:items-center md:gap-4 w-full max-w-xl">
         <input id="cityInput" type="text" placeholder="Search for a city..."
           class="px-4 py-2 w-full sm:w-full md:w-64 rounded-full bg-white/20 text-white placeholder-white focus:outline-none focus:ring focus:ring-blue-400" />
@@ -42,13 +42,13 @@
         </button>
       </div>
 
-      <!-- Recent Cities Dropdown -->
+      <!-- Recent Cities Dropdown menu -->
       <div id="recentCitiesContainer" class="w-full max-w-xs hidden">
         <select id="recentCities" class="w-full mt-4 px-4 py-2 rounded-full bg-white/20 text-white">
         </select>
       </div>
 
-      <!-- Weather Info -->
+      <!-- Weather Info for Selected City -->
       <div id="weatherDisplay" class="mt-6 w-full max-w-2xl text-white bg-gradient-to-br from-gray-700 to-gray-900 bg-opacity-60 rounded-xl shadow-lg border border-white/20 backdrop-blur-md p-6 hidden">
         <h2 class="text-2xl font-semibold mb-4" id="cityName"></h2>
         <div class="flex justify-between items-center">
@@ -72,7 +72,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer section-->
   <footer class="w-full mt-12 text-center py-4 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 text-white text-sm">
     Made by Hardik Kumar. Powered by <a href="https://openweathermap.org/" target="_blank" class="underline hover:text-blue-400">OpenWeatherMap.org</a>
   </footer>

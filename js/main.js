@@ -1,3 +1,5 @@
+// Fetching all the elements
+
 
 const apiKey = '58cdf0b3a93c10cad377e41e839be689';
 
@@ -15,6 +17,8 @@ const forecastCards = document.getElementById('forecastCards');
 const recentCitiesContainer = document.getElementById('recentCitiesContainer');
 const recentCitiesDropdown = document.getElementById('recentCities');
 
+// Search button functionality
+
 searchBtn.addEventListener('click', () => {
   const city = cityInput.value.trim();
   if (city !== '') {
@@ -22,6 +26,8 @@ searchBtn.addEventListener('click', () => {
     updateRecentCities(city);
   }
 });
+
+// For current location button
 
 locationBtn.addEventListener('click', () => {
   if (navigator.geolocation) {
@@ -31,6 +37,45 @@ locationBtn.addEventListener('click', () => {
     });
   }
 });
+
+// Recent cities dropdown function
+
+function updateRecentCities(city) {
+  let cities = JSON.parse(localStorage.getItem('recentCities')) || [];
+  if (!cities.includes(city)) {
+    cities.unshift(city);
+    cities = cities.slice(0, 5);
+    localStorage.setItem('recentCities', JSON.stringify(cities));
+  }
+  renderCityDropdown(cities);
+}
+
+function renderCityDropdown(cities) {
+  recentCitiesDropdown.innerHTML = '';
+  cities.forEach(city => {
+    const option = document.createElement('option');
+    option.value = city;
+    option.textContent = city;
+    recentCitiesDropdown.appendChild(option);
+  });
+
+  if (cities.length > 0) {
+    recentCitiesContainer.classList.remove('hidden');
+  }
+
+  recentCitiesDropdown.onchange = () => {
+    fetchWeatherByCity(recentCitiesDropdown.value);
+  };
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = JSON.parse(localStorage.getItem('recentCities')) || [];
+  if (saved.length) {
+    renderCityDropdown(saved);
+  }
+});
+
+// Loading weather data
 
 function fetchWeatherByCity(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -47,6 +92,8 @@ function fetchWeatherByCoords(lat, lon) {
     .then(data => displayCurrentWeather(data))
     .catch(() => alert("Error fetching location data."));
 }
+
+// Displaying current and extended weather data
 
 function displayCurrentWeather(data) {
   weatherDisplay.classList.remove('hidden');
@@ -83,37 +130,4 @@ function fetchExtendedForecast(lat, lon) {
     });
 }
 
-function updateRecentCities(city) {
-  let cities = JSON.parse(localStorage.getItem('recentCities')) || [];
-  if (!cities.includes(city)) {
-    cities.unshift(city);
-    cities = cities.slice(0, 5);
-    localStorage.setItem('recentCities', JSON.stringify(cities));
-  }
-  renderCityDropdown(cities);
-}
 
-function renderCityDropdown(cities) {
-  recentCitiesDropdown.innerHTML = '';
-  cities.forEach(city => {
-    const option = document.createElement('option');
-    option.value = city;
-    option.textContent = city;
-    recentCitiesDropdown.appendChild(option);
-  });
-
-  if (cities.length > 0) {
-    recentCitiesContainer.classList.remove('hidden');
-  }
-
-  recentCitiesDropdown.onchange = () => {
-    fetchWeatherByCity(recentCitiesDropdown.value);
-  };
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  const saved = JSON.parse(localStorage.getItem('recentCities')) || [];
-  if (saved.length) {
-    renderCityDropdown(saved);
-  }
-});
